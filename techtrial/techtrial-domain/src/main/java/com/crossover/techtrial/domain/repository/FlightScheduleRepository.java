@@ -11,7 +11,7 @@ public interface FlightScheduleRepository extends PagingAndSortingRepository<Fli
 	@Query(value = "select fs from FlightSchedule fs "
 				 + " where fs.flightInfo.from = ?1 "
 				 + "   and fs.flightInfo.to = ?2 "
-				 + "   and fs.maxCapacity > (select count(*) from FlightBooking b where b.flightSchedule = fs) ")
+				 + "   and fs.plane.maxCapacity > (select count(*) from FlightBooking b where b.flightSchedule = fs) ")
 	public Iterable<FlightSchedule> searchFlights(Destination from, Destination to);
 	
 }

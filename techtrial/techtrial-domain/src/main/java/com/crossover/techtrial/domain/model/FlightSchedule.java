@@ -41,18 +41,25 @@ public class FlightSchedule extends AbstractBaseEntity {
 	private Date scheduledDate;
 	
 	/**
-	 * maximum number of passengers in the flight
+	 * references {@link Plane} entity
 	 */
-	private Integer maxCapacity;
-
+	@ManyToOne
+	Plane plane;
+	
 	public FlightInfo getFlightInfo() {
 		return flightInfo;
 	}
-
 	public void setFlightInfo(FlightInfo flightInfo) {
 		this.flightInfo = flightInfo;
 	}
 
+	public Plane getPlane() {
+		return plane;
+	}
+	public void setPlane(Plane plane) {
+		this.plane = plane;
+	}
+	
 	public Date getScheduledDate() {
 		return scheduledDate;
 	}
@@ -61,11 +68,5 @@ public class FlightSchedule extends AbstractBaseEntity {
 		this.scheduledDate = scheduledDate;
 	}
 	
-	public Integer getMaxCapacity() {
-		return maxCapacity;
-	}
-	public void setMaxCapacity(Integer maxCapacity) {
-		this.maxCapacity = maxCapacity;
-	}
 	
 }

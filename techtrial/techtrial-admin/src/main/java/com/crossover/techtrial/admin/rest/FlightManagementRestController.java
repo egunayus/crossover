@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crossover.techtrial.domain.model.Destination;
 import com.crossover.techtrial.domain.model.FlightInfo;
 import com.crossover.techtrial.domain.model.FlightSchedule;
+import com.crossover.techtrial.domain.model.Plane;
 import com.crossover.techtrial.domain.repository.DestinationRepository;
 import com.crossover.techtrial.domain.repository.FlightInfoRepository;
+import com.crossover.techtrial.domain.repository.PlaneRepository;
 import com.crossover.techtrial.domain.service.FlightInfoService;
+import com.crossover.techtrial.domain.service.PlaneService;
 
 /**
  * Provides admin API services for managing flight domain data such as 
@@ -34,6 +37,12 @@ public class FlightManagementRestController {
 
 	@Autowired
 	FlightInfoService flightInfoService;
+	
+	@Autowired
+	PlaneRepository planeRepository;
+	
+	@Autowired
+	PlaneService planeService;
 	
 	/**
 	 * returns the collection of all {@link Destination} entities 
@@ -73,5 +82,25 @@ public class FlightManagementRestController {
 	public FlightInfo saveFlightInfo(@RequestBody FlightInfo flightInfo) {
 		return flightInfoService.save(flightInfo);
 	}
+
+	@RequestMapping(value="/plane/all", method=RequestMethod.GET)
+	public Iterable<Plane> findAllPlaneList(
+			@RequestParam(name="page", defaultValue="0") Integer page,
+			@RequestParam(name="size", defaultValue="200") Integer size
+			) {
+		
+		PageRequest pageRequest = new PageRequest(page, size);
+		
+		return planeRepository.findAll(pageRequest);
+	}
 	
+	@RequestMapping(value="/plane/addNewPlane", method=RequestMethod.POST)
+	public Plane addNewPlane(
+			@RequestBody Plane planeTemplate,
+			@RequestParam(name="rowCount") Integer rowCount,
+			@RequestParam(name="seatGroupCount") Integer seatGroupCount,
+			@RequestParam(name="seatCountInAGroup") Integer seatCountInAGroup
+			) {
+		return planeService.addNewPlane(planeTemplate, rowCount, seatGroupCount, seatCountInAGroup);
+	}
 }
