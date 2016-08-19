@@ -71,7 +71,6 @@ public class FlightManagementRestController {
 
 	@RequestMapping(value="/flightInfo/save", method=RequestMethod.POST)
 	public FlightInfo saveFlightInfo(@RequestBody FlightInfo flightInfo) {
-
 		return flightInfoService.save(flightInfo);
 	}
 	
