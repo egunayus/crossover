@@ -14,6 +14,8 @@ import com.crossover.techtrial.domain.model.FlightInfo;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DomainApplicationMain.class)
 public class FlightInfoRepositoryTest {
+	
+	private static final String NON_EXISTING_TARIFF_NO = "xx_123";
 
 	@Autowired
 	FlightInfoRepository flightInfoRepository;
@@ -30,6 +32,7 @@ public class FlightInfoRepositoryTest {
 		Assert.notNull(to);
 				
 		FlightInfo flightInfo = new FlightInfo();
+		flightInfo.setTariffNo(NON_EXISTING_TARIFF_NO);
 		flightInfo.setFrom(from);
 		flightInfo.setTo(to);
 		

@@ -1,12 +1,9 @@
 package com.crossover.techtrial.domain.repository;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.crossover.techtrial.domain.model.FlightInfo;
 
-public interface FlightInfoRepository extends CrudRepository<FlightInfo, Long> {
+public interface FlightInfoRepository extends PagingAndSortingRepository<FlightInfo, Long> {
 
-	public Iterable<FlightInfo> findAll(Pageable pageable);
-	
 }
