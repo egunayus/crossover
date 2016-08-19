@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>techtrial-web</artifactId>
+	<artifactId>techtrial-api</artifactId>
 	<packaging>jar</packaging>
 
 	<name>techtrial-web</name>

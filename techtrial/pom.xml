@@ -50,7 +50,7 @@
 
 	<modules>
 		<module>techtrial-domain</module>
-		<module>techtrial-web</module>
+		<module>techtrial-api</module>
 		<module>techtrial-admin</module>
 	</modules>
 </project>
