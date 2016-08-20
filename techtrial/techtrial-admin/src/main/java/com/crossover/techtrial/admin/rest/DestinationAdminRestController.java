@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crossover.techtrial.domain.model.Destination;
-import com.crossover.techtrial.domain.repository.DestinationRepository;
+import com.crossover.techtrial.domain.model.flight.Destination;
+import com.crossover.techtrial.domain.repository.flight.DestinationRepository;
 
 /**
  * Provides admin API services for managing {@link Destination} domain data 

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crossover.techtrial.domain.model.FlightInfo;
-import com.crossover.techtrial.domain.model.FlightSchedule;
-import com.crossover.techtrial.domain.model.Plane;
-import com.crossover.techtrial.domain.repository.FlightInfoRepository;
-import com.crossover.techtrial.domain.repository.FlightScheduleRepository;
-import com.crossover.techtrial.domain.service.FlightInfoService;
-import com.crossover.techtrial.domain.service.FlightScheduleService;
+import com.crossover.techtrial.domain.model.flight.FlightInfo;
+import com.crossover.techtrial.domain.model.flight.FlightSchedule;
+import com.crossover.techtrial.domain.model.flight.Plane;
+import com.crossover.techtrial.domain.repository.flight.FlightInfoRepository;
+import com.crossover.techtrial.domain.repository.flight.FlightScheduleRepository;
+import com.crossover.techtrial.domain.service.flight.FlightInfoService;
+import com.crossover.techtrial.domain.service.flight.FlightScheduleService;
 
 /**
  * Provides admin API services for managing {@link FlightSchedule} domain data 

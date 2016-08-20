@@ -8,8 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import com.crossover.techtrial.DomainApplicationMain;
-import com.crossover.techtrial.domain.model.Destination;
-import com.crossover.techtrial.domain.model.FlightInfo;
+import com.crossover.techtrial.domain.model.flight.Destination;
+import com.crossover.techtrial.domain.model.flight.FlightInfo;
+import com.crossover.techtrial.domain.repository.flight.DestinationRepository;
+import com.crossover.techtrial.domain.repository.flight.FlightInfoRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DomainApplicationMain.class)

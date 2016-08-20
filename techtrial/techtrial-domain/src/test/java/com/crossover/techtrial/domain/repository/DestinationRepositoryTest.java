@@ -8,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.crossover.techtrial.DomainApplicationMain;
-import com.crossover.techtrial.domain.model.Destination;
+import com.crossover.techtrial.domain.model.flight.Destination;
+import com.crossover.techtrial.domain.repository.flight.DestinationRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=DomainApplicationMain.class)

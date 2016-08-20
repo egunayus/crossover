@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.crossover.techtrial.domain.model.FlightInfo;
-import com.crossover.techtrial.domain.repository.FlightInfoRepository;
-import com.crossover.techtrial.domain.service.FlightInfoService;
+import com.crossover.techtrial.domain.model.flight.FlightInfo;
+import com.crossover.techtrial.domain.repository.flight.FlightInfoRepository;
+import com.crossover.techtrial.domain.service.flight.FlightInfoService;
 
 /**
  * Provides admin API services for managing {@link FlightInfo} domain data 
