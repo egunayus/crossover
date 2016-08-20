@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My first unify</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Web Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Header and Footer -->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <script src="assets/plugins/angularjs/angular.js"></script>
+    <script src="assets/plugins/angularjs/angular-route.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/searchFlightController.js"></script>
+    <script src="app/myBookings.js"></script>
+
+</head>
+<body>
+
+		<!--=== Content Part ===-->
+		<div class="container content">
+			<div class="row">
+				<!-- Begin Sidebar Menu -->
+				<div class="col-md-3">
+					<ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+						<!-- Thumbails -->
+						<li class="list-group-item"><a href="#searchFlights">Search Flights</a></li>
+						<!-- End Thumbails -->
+
+						<!-- Thumbails -->
+						<li class="list-group-item"><a href="#myBookings">My Bookings</a></li>
+						<!-- End Thumbails -->
+
+					</ul>
+				</div>
+				<!-- End Sidebar Menu -->
+
+		        <!-- Begin Content -->
+		        <div class="col-md-9">
+
+					<div ng-view></div>
+					
+				</div>
+			</div>
+		</div>
+
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.maskedinput.min.js"></script>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+	<script src="assets/plugins/sky-forms-pro/skyforms/js/jquery.validate.min.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="assets/js/app.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/masking.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Masking.initMasking();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+
+</body>
+</html>

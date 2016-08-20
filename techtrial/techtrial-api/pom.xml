@@ -11,7 +11,7 @@
 	<artifactId>techtrial-api</artifactId>
 	<packaging>jar</packaging>
 
-	<name>techtrial-web</name>
+	<name>techtrial-api</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

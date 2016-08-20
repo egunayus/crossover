@@ -1,0 +1,104 @@
+
+            <div class="row margin-bottom-40">
+                <!-- searchFlightForm -->
+                <div class="col-md-6">
+                    <form id="searchFlightForm" class="sky-form">
+                        <header>Flight Search</header>
+
+                        <fieldset>
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-4">From</label>
+                                    <div class="col col-8">
+
+										<label class="select">
+											<select name="from" id="from" ng-model="data.from" required>
+												<option ng-repeat="destination in data.destinations" value="{{destination.id}}">{{destination.name}}</option>
+											</select>
+											<i></i>
+										</label>                                    
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-4">To</label>
+                                    <div class="col col-8">
+
+										<label class="select">
+											<select name="to" id="to" ng-model="data.to" required>
+												<option ng-repeat="destination in data.destinations" value="{{destination.id}}">{{destination.name}}</option>
+											</select>
+											<i></i>
+										</label>                                    
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-4">Date</label>
+                                    <div class="col col-8">
+                                        <label class="input">
+											<i class="icon-append fa fa-calendar"></i>
+											<input type="text" name="date" id="date" ng-model="data.date" required>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                        </fieldset>
+                        <footer>
+                            <button ng-click="searchFlights()" class="button">Search</button>
+                        </footer>
+                    </form>
+
+                </div>
+                <!-- searchFlightForm -->
+                
+				<!-- searchFlightResultsForm -->
+				<div class="col-md-6" ng-if="data.availableFlights">
+					<form id="searchFlightResultsForm" class="sky-form">
+						<header>Search Results</header>
+						
+							<div class="panel panel-sea margin-bottom-40">
+								<div class="panel-heading">
+									<h3 class="panel-title"><i class="fa fa-edit"></i> Striped Rows</h3>
+								</div>
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>From</th>
+											<th>To</th>
+											<th>TariffNo</th>
+											<th>Scheduled Date</th>
+											<th>Price</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat = "flight in data.availableFlights track by $index">
+											<td>{{$index + 1}}</td>
+											<td>{{flight.flightInfo.from.name}}</td>
+											<td>{{flight.flightInfo.to.name}}</td>
+											<td>{{flight.flightInfo.tariffNo}}</td>
+											<td>{{flight.scheduledDate}}</td>
+											<td>{{flight.price}}</td>
+											<td><button ng-click="$location.path( '/new-page.html' );" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Book now</button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						
+						<footer></footer>
+					</form>
+				</div>                
+				<!-- searchFlightResultsForm -->
+				
+            </div><!--/end row-->
+        </div>
+    </div>
+</div>
+
