@@ -1,0 +1,56 @@
+            <div class="row margin-bottom-40">
+
+					<!-- Checkout-Form -->
+					<form id="checkinForm" class="sky-form">
+						<header>Checkin seats</header>
+					</form>
+					
+						<!--Basic Table-->
+						<div class="panel panel-green margin-bottom-40">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-tasks"></i> Tickets</h3>
+							</div>
+							<div class="panel-body">
+								<p>your bookings, you can cancel, do payment, checkin or print tickets here </p>
+								
+							</div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th>Surname</th>
+										<th>Flight #</th>
+										<th>Seat Row</th>
+										<th>Seat No</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat = "ticket in data.tickets track by $index">
+										<td>{{$index + 1}}</td>
+										<td>{{ticket.passenger.name}}</td>
+										<td>{{ticket.passenger.surname}}</td>
+										<td>{{data.flightBooking.flightSchedule.flightInfo.tariffNo}}</td>
+										<td>
+											{{ticket.checkinRowNo}}
+											<select ng-model="ticket.checkinRowNo" ng-if="ticket.checkinRequired">
+												<option ng-repeat="row in data.seatRowArr" value="{{row}}">{{row}}</option>
+											</select>
+										</td>
+										<td>
+											{{ticket.checkinSeatNo}}
+											<select ng-model="ticket.checkinSeatNo" ng-if="ticket.checkinRequired">
+												<option ng-repeat="seatNo in data.seatNoArr" value="{{seatNo}}">{{seatNo}}</option>
+											</select>
+										</td>
+										<td>
+											<button ng-click="checkin($index)" class="btn-u rounded-2x btn-u-aqua btn-u-sm" ng-if="ticket.checkinRequired" title="check-in"><i class="fa fa-tags"></i></a>
+											<button ng-click="checkin($index)" class="btn-u rounded-2x btn-u-green btn-u-sm" ng-if="ticket.canPrintTicket" title="check-in"><i class="fa fa-print"></i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--End Basic Table-->
+			</div>

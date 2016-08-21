@@ -1,7 +1,10 @@
 package com.crossover.techtrial.api.rest.booking;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,4 +35,10 @@ public class FlightTicketRestController {
 		
 		return flightTicketService.checkin(flightTicketRequest, user);
 	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public void getTicketAsPDF(@PathVariable("id") Long id, HttpServletResponse response) {
+		response.setContentType("application/pdf");
+	}
+	
 }

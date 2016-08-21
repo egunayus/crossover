@@ -3,18 +3,15 @@
                 <!-- searchFlightForm -->
                 <div class="col-md-9">
                     <form id="searchFlightForm" class="sky-form">
-                        <header>Flight Search</header>
+                        <header>Flight Information</header>
 
                         <fieldset>
                             <section>
                                 <div class="row">
                                     <label class="label col col-4">From</label>
                                     <div class="col col-8">
-
-										<label class="select">
-											<select name="from" id="from" ng-model="data.from" required>
-												<option ng-repeat="destination in data.destinations" value="{{destination.id}}">{{destination.name}}</option>
-											</select>
+										<label class="input">
+											<input type="text" name="from" id="from" ng-model="data.flightInfo.from.name" readonly />
 											<i></i>
 										</label>                                    
                                     </div>
@@ -25,11 +22,8 @@
                                 <div class="row">
                                     <label class="label col col-4">To</label>
                                     <div class="col col-8">
-
-										<label class="select">
-											<select name="to" id="to" ng-model="data.to" required>
-												<option ng-repeat="destination in data.destinations" value="{{destination.id}}">{{destination.name}}</option>
-											</select>
+										<label class="input">
+											<input type="text" name="from" id="from" ng-model="data.flightInfo.to.name" readonly />
 											<i></i>
 										</label>                                    
                                     </div>
@@ -42,7 +36,20 @@
                                     <div class="col col-8">
                                         <label class="input">
 											<i class="icon-append fa fa-calendar"></i>
-											<input type="text" name="date" id="date" ng-model="data.date" required>
+											<input type="text" name="date" id="date" ng-model="data.date" readonly>
+                                        </label>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div class="row">
+                                    <label class="label col col-4">Number of passengers</label>
+                                    <div class="col col-8">
+                                        <label >
+											<button type='button' class="quantity-button" name='subtract' ng-click="decreaseQty()" value='-'>-</button>
+											<input type="text" style="width: 50px" name="numberOfPassengers" id="numberOfPassengers" ng-model="data.numberOfPassengers" readonly>
+											<button type='button' class="quantity-button" name='add' ng-click="data.numberOfPassengers = data.numberOfPassengers+1" value='+'>+</button>
                                         </label>
                                     </div>
                                 </div>
@@ -50,7 +57,7 @@
 
                         </fieldset>
                         <footer>
-                            <button ng-click="searchFlights()" class="button">Search</button>
+                            <button ng-click="bookFlight()" class="button">Book Flight</button>
                         </footer>
                     </form>
 
@@ -89,26 +96,14 @@
 											<td>{{flight.scheduledDate}}</td>
 											<td>{{flight.price}}</td>
 											<td>
-												<a href="#/bookFlight?flightScheduleId={{flight.id}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Book now</a>
+												<a href="#/bookFligt?flightScheduleId={{flight.id}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Book now</a>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						
-						<footer>
-							<div class="text-center">
-								<ul class="pagination">
-									<li><a ng-click="queryPage(0)">&laquo;</a></li>
-
-									<li ng-repeat="n in [].constructor(data.pageResult.totalPages) track by $index">
-										<a ng-click="queryPage($index)"> {{$index + 1}} </a>
-									</li>
-
-									<li><a ng-click="queryPage(data.pageResult.totalPages - 1)">&raquo;</a></li>
-								</ul>
-							</div>
-						</footer>
+						<footer></footer>
 					</form>
 				</div>                
 				<!-- searchFlightResultsForm -->

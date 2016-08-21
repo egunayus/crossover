@@ -70,9 +70,11 @@ mainApp.controller("searchFlightController", function($scope, $http) {
 		to : null,
 		date : null,
 		flexDaysCount : 2,
+		page : 0,
+		size : 2,
 		availableFlights : null
 	};
-	
+		
 	$http.get(url).success( function(response) {
 		$scope.data.destinations = response; 
 	});
@@ -86,11 +88,19 @@ mainApp.controller("searchFlightController", function($scope, $http) {
 		var url = 'flightSchedule/search?from=' + $scope.data.from 
 					+ '&to=' + $scope.data.to 
 					+ '&tripDate=' + $scope.data.date + 'T00:00:00'
-					+ '&flexDaysCount=' + $scope.data.flexDaysCount;
+					+ '&flexDaysCount=' + $scope.data.flexDaysCount
+					+ '&page=' + $scope.data.page
+					+ '&size=' + $scope.data.size;
 		
 		$http.get(url).success (function(response) {
-			$scope.data.availableFlights = response;
+			$scope.data.pageResult = response;
+			$scope.data.availableFlights = response.content;
 		});
+	};
+	
+	$scope.queryPage = function(page) {
+		$scope.data.page = page;
+		$scope.searchFlights();
 	};
 	
 });

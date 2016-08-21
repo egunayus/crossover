@@ -1,6 +1,8 @@
 package com.crossover.techtrial.domain.model.booking;
 
 /**
+ * Represents a credit card information
+ * 
  * The objects of this class are not persisted in database, Therefore it is not an @Entity class
  * 
  * @author egunay
@@ -12,9 +14,11 @@ public class CreditCard {
 	
 	private String number;
 	
-	private String expirationDate;
+	private String expirationMonth;
+
+	private Integer expirationYear;
 	
-	private Integer cvc2;
+	private Integer cvv2;
 
 	public String getCardOwner() {
 		return cardOwner;
@@ -30,18 +34,25 @@ public class CreditCard {
 		this.number = number;
 	}
 
-	public String getExpirationDate() {
-		return expirationDate;
+	public String getExpirationMonth() {
+		return expirationMonth;
 	}
-	public void setExpirationDate(String expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setExpirationMonth(String expirationMonth) {
+		this.expirationMonth = expirationMonth;
 	}
-
-	public Integer getCvc2() {
-		return cvc2;
+	
+	public Integer getExpirationYear() {
+		return expirationYear;
 	}
-	public void setCvc2(Integer cvc2) {
-		this.cvc2 = cvc2;
+	public void setExpirationYear(Integer expirationYear) {
+		this.expirationYear = expirationYear;
+	}
+	
+	public Integer getCvv2() {
+		return cvv2;
+	}
+	public void setCvv2(Integer cvv2) {
+		this.cvv2 = cvv2;
 	}
 	
 	

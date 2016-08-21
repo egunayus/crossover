@@ -27,7 +27,7 @@ import com.crossover.techtrial.domain.repository.flight.PlaneRepository;
  */
 @Service
 public class FlightScheduleService {
-
+	
 	@Autowired
 	PlaneRepository planeRepository;
 	

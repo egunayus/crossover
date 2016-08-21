@@ -1,14 +1,19 @@
 package com.crossover.techtrial.domain.model.flight;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostLoad;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import com.crossover.techtrial.domain.model.AbstractBaseEntity;
@@ -27,6 +32,8 @@ import com.crossover.techtrial.domain.model.AbstractBaseEntity;
 	    @UniqueConstraint(columnNames = {"flight_info_id", "scheduled_date"})
 	}) 
 public class FlightSchedule extends AbstractBaseEntity {
+	
+	public static final Integer CHECK_IN_POSSIBLE_HOURS = 48;
 
 	/**
 	 * references {@link FlightInfo}
@@ -53,6 +60,30 @@ public class FlightSchedule extends AbstractBaseEntity {
 	 */
 	@Column(nullable=false)
 	private Double price;
+	
+	/**
+	 * This fiels is not persisted in database, it is a calculated field, 
+	 * Indicates that users can check in within 48 hours to flight
+	 */
+	@Transient
+	private Boolean isCheckinPossible;
+	
+	/**
+	 * calculate transient fields after the entity is loaded
+	 * 
+	 */
+	@PostLoad
+	public void calculateTransientFields() {
+		if (scheduledDate == null) 
+			this.setIsCheckinPossible(false);
+		else {
+			LocalDateTime scheduledTime = LocalDateTime.ofInstant(scheduledDate.toInstant(), ZoneId.systemDefault());
+			LocalDateTime now = LocalDateTime.now();
+			
+			long hours = ChronoUnit.HOURS.between(now, scheduledTime);
+			this.setIsCheckinPossible(hours > 0 && hours <= CHECK_IN_POSSIBLE_HOURS);
+		}
+	}
 	
 	public FlightInfo getFlightInfo() {
 		return flightInfo;
@@ -82,4 +113,12 @@ public class FlightSchedule extends AbstractBaseEntity {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+	public Boolean getIsCheckinPossible() {
+		return isCheckinPossible;
+	}
+	public void setIsCheckinPossible(Boolean isCheckinPossible) {
+		this.isCheckinPossible = isCheckinPossible;
+	}
+	
 }

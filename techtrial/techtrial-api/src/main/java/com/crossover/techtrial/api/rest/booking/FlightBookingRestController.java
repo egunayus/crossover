@@ -3,6 +3,7 @@ package com.crossover.techtrial.api.rest.booking;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import com.crossover.techtrial.domain.model.booking.FlightBooking;
 import com.crossover.techtrial.domain.model.user.User;
 import com.crossover.techtrial.domain.repository.booking.FlightBookingRepository;
 import com.crossover.techtrial.domain.service.booking.FlightBookingService;
+import com.crossover.techtrial.domain.service.flight.FlightScheduleService;
 
 @RestController
 @RequestMapping("/flightBooking")
@@ -28,6 +30,16 @@ public class FlightBookingRestController {
 	
 	@Autowired
 	FlightBookingService flightBookingService;
+
+	@Autowired
+	FlightScheduleService flightScheduleService;
+
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public FlightBooking findBookingById(@PathVariable("id") Long id) {
+		User user = userUtility.getCurrentUser();
+		
+		return flightBookingRepository.findByIdAndUser(id, user);
+	}
 	
 	@RequestMapping(value="/userBookings", method=RequestMethod.GET)
 	public List<FlightBooking> getUserBookings() {
@@ -35,7 +47,7 @@ public class FlightBookingRestController {
 		
 		List<FlightBooking> flightBookingList = flightBookingRepository.findAllByUser(user);
 		
-		// ignore irrelevant entities
+		// ignore irrelevant entities 
 		flightBookingList.stream().forEach(e -> e.getFlightSchedule().setPlane(null));
 		
 		return flightBookingList;

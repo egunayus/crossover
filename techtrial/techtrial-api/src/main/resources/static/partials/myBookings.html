@@ -1,36 +1,49 @@
-					<!--Basic Table-->
-					<div class="panel panel-green margin-bottom-40">
-						<div class="panel-heading">
-							<h3 class="panel-title"><i class="fa fa-tasks"></i> Basic Table</h3>
+            <div class="row margin-bottom-40">
+
+					<!-- Checkout-Form -->
+					<form id="bookingsForm" class="sky-form">
+						<header>My Bookings</header>
+					</form>
+					
+						<!--Basic Table-->
+						<div class="panel panel-green margin-bottom-40">
+							<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-tasks"></i> Bookings</h3>
+							</div>
+							<div class="panel-body">
+								<p>your bookings, you can cancel, do payment, checkin or print tickets here </p>
+							</div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Flight #</th>
+										<th>Date</th>
+										<th>#Passengers</th>
+										<th>Total price</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat = "booking in data.bookings track by $index">
+										<td>{{$index + 1}}</td>
+										<td>{{booking.flightSchedule.flightInfo.from.name}}</td>
+										<td>{{booking.flightSchedule.flightInfo.to.name}}</td>
+										<td>{{booking.flightSchedule.flightInfo.tariffNo}}</td>
+										<td>{{booking.flightSchedule.scheduledDate}}</td>
+										<td>{{booking.numberOfPassengers}}</td>
+										<td>{{booking.totalPrice}}</td>
+										<td>
+											<span class="label {{ statusLabel(booking.status) }}">{{booking.status}}</span>
+											<a href="#/payment?flightBookingId={{booking.id}}" class="btn-u rounded-2x btn-u-orange btn-u-sm" ng-if="booking.paymentRequired" title="payment"><i class="fa fa-shopping-cart"></i></a>
+											<a href="#/checkin?flightBookingId={{booking.id}}" class="btn-u rounded-2x btn-u-aqua btn-u-sm" ng-if="booking.checkinRequired" title="check-in"><i class="fa fa-tags"></i></a>
+											<a href="#/checkin?flightBookingId={{booking.id}}" class="btn-u rounded-2x btn-u-green btn-u-sm" ng-if="booking.canPrintTicket" title="print"><i class="fa fa-print"></i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-						<div class="panel-body">
-							<p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-						</div>
-						<table class="table">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>From</th>
-									<th>To</th>
-									<th>Flight #</th>
-									<th>Date</th>
-									<th>#Passengers</th>
-									<th>Total price</th>
-									<th>Status</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat = "booking in data.bookings track by $index">
-									<td>{{$index + 1}}</td>
-									<td>{{booking.flightSchedule.flightInfo.from.name}}</td>
-									<td>{{booking.flightSchedule.flightInfo.to.name}}</td>
-									<td>{{booking.flightSchedule.flightInfo.tariffNo}}</td>
-									<td>{{booking.flightSchedule.scheduledDate}}</td>
-									<td>{{booking.numberOfPassengers}}</td>
-									<td>{{booking.totalPrice}}</td>
-									<td><span class="label {{ statusLabel(booking.status) }}">{{booking.status}}</span></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!--End Basic Table-->
+						<!--End Basic Table-->
+			</div>

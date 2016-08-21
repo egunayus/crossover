@@ -11,6 +11,7 @@ abstract public class AbstractPersonEntity extends AbstractBaseEntity {
 	
 	private String email;
 	
+	private String phone;
 
 	public String getName() {
 		return name;
@@ -31,6 +32,13 @@ abstract public class AbstractPersonEntity extends AbstractBaseEntity {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 }
