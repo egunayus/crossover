@@ -43,14 +43,13 @@ mainApp.controller("checkinController", function($scope, $http, $routeParams) {
 		var url = "flightTicket/checkin";
 
 		var ticket = $scope.data.tickets[ticketNo];
-		alert(ticket.id);
 		
 		var requestBody = ticket;
 		
 		$http.post(url, requestBody).success( function(response) {
 			$scope.data.flightBooking = response; 
 		}).error( function(response) {
-			jQuery.msgBox(response.message);
+			alert(response.message);
 		});
 
 	}

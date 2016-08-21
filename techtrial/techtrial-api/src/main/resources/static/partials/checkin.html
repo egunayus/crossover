@@ -45,8 +45,8 @@
 											</select>
 										</td>
 										<td>
-											<button ng-click="checkin($index)" class="btn-u rounded-2x btn-u-aqua btn-u-sm" ng-if="ticket.checkinRequired" title="check-in"><i class="fa fa-tags"></i></a>
-											<button ng-click="checkin($index)" class="btn-u rounded-2x btn-u-green btn-u-sm" ng-if="ticket.canPrintTicket" title="check-in"><i class="fa fa-print"></i></a>
+											<button ng-click="checkin($index)" class="btn-u rounded-2x btn-u-aqua btn-u-sm" ng-if="ticket.checkinRequired" title="check-in"><i class="fa fa-tags"></i></button>
+											<a href="flightTicket/asPdf/{{ticket.id}}" class="btn-u rounded-2x btn-u-green btn-u-sm" ng-if="ticket.canPrintTicket" title="check-in"><i class="fa fa-print"></i></a>
 										</td>
 									</tr>
 								</tbody>

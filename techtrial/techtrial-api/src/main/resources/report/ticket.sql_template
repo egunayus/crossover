@@ -1,0 +1,28 @@
+SELECT t.id,
+	t.checkin_date,
+	t.checkin_row_no,
+	t.checkin_seat_no,
+	t.passenger_id,
+	i.tariff_no,
+	s.scheduled_date,
+	df.name dest_from,
+	dt.name dest_to,
+	p.email,
+	p.name,
+	p.phone,
+	p.surname
+FROM ticket.flight_ticket t,
+	ticket.passenger p,
+	ticket.flight_booking b,
+	ticket.flight_schedule s,
+	ticket.flight_info i,
+	ticket.destination df,
+	ticket.destination dt
+WHERE 
+	 t.flight_booking_id = b.id 
+	 AND t.passenger_id = p.id 
+	 AND b.flight_schedule_id = s.id 
+	 AND s.flight_info_id = i.id 
+	 AND i.from_id = df.id 
+	 AND i.to_id = dt.id 
+	 AND t.id = ?

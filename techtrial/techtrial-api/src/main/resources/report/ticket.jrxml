@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-21T16:13:14 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a32d232a-1d21-46f1-a727-d6ed02bc15c5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="dGlja2V0LmZsaWdodF9pbmZvICw4MzAsNjAsNWViOTg5MGUtMmZhMC00OGExLTg4MjktMWVkZjli&#xA;MzEwMDNiO3RpY2tldC5kZXN0aW5hdGlvbiAsOTYwLDg3LGM0ZGViMzRmLTJmMGYtNGRiMi1iYmNi&#xA;LTk4N2YyZWMyNzBmZTt0aWNrZXQuZmxpZ2h0X2Jvb2tpbmcgLDQ1OCwyMCw1ZjMzNDFkZi0xODgz&#xA;LTQ2ZDEtYmE4ZS1hYjgwZGExNjJhNmI7dGlja2V0LnBhc3NlbmdlciAsMzMwLDMzLGI5ODNkMjNi&#xA;LWI5NDUtNGY3OS05ZGIzLWY4MTk3YmVmYmRlYzt0aWNrZXQuZGVzdGluYXRpb24gLDIwLDg3LGI1&#xA;ZWEyZjIyLTVkYTEtNDQxOC05ZDJhLWY1MGJmZWRkOGVjOTt0aWNrZXQuZmxpZ2h0X3NjaGVkdWxl&#xA;ICw2NjgsNDcsM2VjZGQyZjQtNWZjZi00ZDg5LThhNTktNjg4MWViMzg5MWE5O3RpY2tldC5mbGln&#xA;aHRfdGlja2V0ICwxNDIsMzMsOWZkN2I4ZGEtNWM4MC00ODE0LWFkZjYtMzg0MTJiYjMwMDAxOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySql - Ticket DB"/>
+	<queryString>
+		<![CDATA[SELECT t.id,
+	t.checkin_date,
+	t.checkin_row_no,
+	t.checkin_seat_no,
+	t.passenger_id,
+	i.tariff_no,
+	s.scheduled_date,
+	df.name dest_from,
+	dt.name dest_to,
+	p.email,
+	p.name,
+	p.phone,
+	p.surname
+FROM ticket.flight_ticket t,
+	ticket.passenger p,
+	ticket.flight_booking b,
+	ticket.flight_schedule s,
+	ticket.flight_info i,
+	ticket.destination df,
+	ticket.destination dt
+WHERE 
+	 t.flight_booking_id = b.id 
+	 AND t.passenger_id = p.id 
+	 AND b.flight_schedule_id = s.id 
+	 AND s.flight_info_id = i.id 
+	 AND i.from_id = df.id 
+	 AND i.to_id = dt.id 
+	 AND t.id = 1]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="checkin_date" class="java.sql.Timestamp"/>
+	<field name="checkin_row_no" class="java.lang.Integer"/>
+	<field name="checkin_seat_no" class="java.lang.String"/>
+	<field name="passenger_id" class="java.lang.Long"/>
+	<field name="tariff_no" class="java.lang.String"/>
+	<field name="scheduled_date" class="java.sql.Timestamp"/>
+	<field name="dest_from" class="java.lang.String"/>
+	<field name="dest_to" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="phone" class="java.lang.String"/>
+	<field name="surname" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="20" width="400" height="30" uuid="5d9dbf44-9859-434b-8c5f-14d58246e7a5"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Air Ticket Reservation System e-ticket]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="229" splitType="Stretch">
+			<textField>
+				<reportElement x="84" y="10" width="100" height="30" uuid="7d86c430-66a4-40b1-a92d-47e2cae4c689"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="40" width="100" height="30" uuid="8aa002f0-1186-4f58-8cb2-fe796ac45007"/>
+				<textFieldExpression><![CDATA[$F{checkin_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="10" width="100" height="30" uuid="06db1446-eb11-4208-8990-03545e9a7185"/>
+				<textFieldExpression><![CDATA[$F{checkin_row_no} +  " - " + $F{checkin_seat_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="70" height="30" uuid="a1700d81-a523-4620-95e7-0946efc2008d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="10" width="70" height="30" uuid="c79b9909-92c7-49fa-8762-52eebdfc4b05"/>
+				<text><![CDATA[Seat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="40" width="70" height="30" uuid="6aae638b-4ca9-4dc2-86db-f9c4bfb36f1a"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Tariff No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="40" width="100" height="30" uuid="774727da-bd19-4027-8f42-17ee14777c3a"/>
+				<textFieldExpression><![CDATA[$F{tariff_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="70" width="70" height="30" uuid="197b7f53-001f-4fdc-83ad-2331aebf1d84"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Flight Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="70" width="100" height="30" uuid="0096ba4e-be3d-4bd6-9e6b-48899c0cb772"/>
+				<textFieldExpression><![CDATA[$F{scheduled_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="100" width="70" height="30" uuid="67912e5d-357d-40b4-9b82-4e1383165855"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="100" width="100" height="30" uuid="67f7ad38-4040-4667-bacb-29e474883f4e"/>
+				<textFieldExpression><![CDATA[$F{dest_from}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="140" width="70" height="30" uuid="661dc45e-872c-4a18-bcca-092a24a9d0ac"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="84" y="140" width="100" height="30" uuid="5d9cd09d-3f2d-489c-b9dd-08f02f25c253"/>
+				<textFieldExpression><![CDATA[$F{dest_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="206" y="10" width="70" height="30" uuid="de16be86-358e-48f2-a477-51b85542a63d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="10" width="100" height="30" uuid="ff6c3e3c-8db1-43cc-acf3-6e910291b1c4"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="206" y="40" width="70" height="30" uuid="05311a75-bc85-4b76-bc2e-4c3fb6f8fd37"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Surname]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="40" width="100" height="30" uuid="aa05f81e-322b-4c9f-b9eb-1faf1d1eb36d"/>
+				<textFieldExpression><![CDATA[$F{surname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="70" width="200" height="30" uuid="6d7d8e8f-ed0a-452b-bbe1-9e1bf27250cc"/>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="206" y="70" width="70" height="30" uuid="c6f867a4-f6c4-40e4-ab9a-96d320fac0a9"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

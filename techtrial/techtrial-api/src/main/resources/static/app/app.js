@@ -17,6 +17,9 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 		.when('/checkin', {
 			templateUrl: 'partials/checkin.html', controller: 'checkinController'
 		})
+		.when('/signin', {
+			templateUrl: 'partials/signin.html', controller: 'signinController'
+		})
 		;
 }]);
 
