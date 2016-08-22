@@ -14,7 +14,7 @@ The project is configured to be a multi module maven project. At the root level 
 	+ tectrial-admin/
 
 Important configuration files and folders are presented in the following picture
-
+![GitHub Logo](/docs/folder_structure.png)
  
 
 ## Installation
