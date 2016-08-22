@@ -46,7 +46,7 @@ application.properties
 spring.profiles.active=development, mysql-local, mail
 ```
 
-developemnt profile is used to load test data every time the application is started on local development environment. 
+developemnt and test profiles are used to load test data every time the application is started. 
 
 ##### techtrial-domain/ application-mysql-local.properties
 
@@ -139,4 +139,6 @@ The application can be run by this command
 
  java -jar techtrial-api-0.0.1-SNAPSHOT.jar
  
+ If you have any questions, please do not hesitate getting in contact with me. 
  
+ e.gunay@gmail.com
