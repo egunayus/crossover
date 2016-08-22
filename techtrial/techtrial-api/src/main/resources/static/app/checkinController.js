@@ -15,7 +15,9 @@ mainApp.controller("checkinController", function($rootScope, $scope, $http, $rou
 	$scope.refreshBookingTable = function(flightBookingId) {
 		$http.get("flightBooking/" + flightBookingId, $rootScope.httpConfig).success( function(response) {
 			$scope.data.flightBooking = response; 
-	
+			$scope.data.seatRowArr = [];
+			$scope.data.seatNoArr = [];
+			
 			if (response) {
 				$scope.data.tickets = response.tickets;
 				
