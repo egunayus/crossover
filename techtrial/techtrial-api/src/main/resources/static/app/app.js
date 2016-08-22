@@ -17,12 +17,56 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 		.when('/checkin', {
 			templateUrl: 'partials/checkin.html', controller: 'checkinController'
 		})
-		.when('/signin', {
+		.otherwise({
 			templateUrl: 'partials/signin.html', controller: 'signinController'
 		})
 		;
 }]);
 
 mainApp.run(function($rootScope, $http) {
-	$http.defaults.headers.common['X-Auth-Token'] = 'test-x-auth-token';
+	$rootScope.state = "test_state";
+	$rootScope.nonce = "DgkRrHXmyu3KLd0KDdfq";
+	$rootScope.redirectUri = "http://www.example.org";
+	$rootScope.signedIn = false;
+	
+	$rootScope.authUrl = "https://accounts.google.com/o/oauth2/auth?"
+		+ "response_type=code"
+		+ "&client_id=" + "387640011435-t6csd426r6j03sncvn5pbagg3gdr08ba.apps.googleusercontent.com"
+		+ "&scope=email profile"
+		+ "&state=" + $rootScope.state
+		+ "&redirect_uri=" + $rootScope.redirectUri
+		+ "&nonce=" + $rootScope.nonce;
+	
+	//$http.defaults.headers.common['X-Auth-Token'] = 'test-x-auth-token';
+	var authToken = getQueryParameter('authToken');
+	
+	if (authToken != null) {
+		$http.post("auth/token", authToken).success(function(response) {
+			if (response.authToken) {
+				$rootScope.signedIn = true;
+				$rootScope.authToken = response.authToken;
+				$rootScope.httpConfig = {
+					headers:  {
+						'X-Auth-Token' : response.authToken
+					}
+				};
+
+				$http.defaults.headers.post['X-Auth-Token'] = response.authToken;
+			}
+		});
+	}
+	
 });
+
+function getQueryParameter(paramName) {
+	var searchString = window.location.search;
+	
+	var parts = searchString.split("&");
+	var value = null;
+	for (var part of parts) {
+		if (part.indexOf(paramName) >= 0)
+			value = part.split("=")[1];
+	}
+	
+	return value;
+}

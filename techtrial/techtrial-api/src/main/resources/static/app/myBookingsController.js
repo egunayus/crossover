@@ -1,5 +1,8 @@
 
-mainApp.controller("myBookingsController", function($scope, $http, $location) {
+mainApp.controller("myBookingsController", function($rootScope, $scope, $http, $location) {
+	if (! $rootScope.signedIn)
+		return;
+
 	var url = "flightBooking/userBookings";
 	
 	$scope.data = {
@@ -32,7 +35,7 @@ mainApp.controller("myBookingsController", function($scope, $http, $location) {
 		}
 	};
 	
-	$http.get(url).success( function(response) {
+	$http.get(url, $rootScope.httpConfig).success( function(response) {
 		$scope.data.bookings = response; 
 		
 		/*

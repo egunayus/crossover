@@ -1,6 +1,8 @@
 package com.crossover.techtrial.api.rest.booking;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crossover.techtrial.api.rest.booking.model.CompletePaymentRequest;
+import com.crossover.techtrial.api.util.MailContentBuilder;
 import com.crossover.techtrial.api.util.UserUtility;
 import com.crossover.techtrial.domain.model.booking.CreditCard;
 import com.crossover.techtrial.domain.model.booking.FlightBooking;
@@ -17,6 +20,7 @@ import com.crossover.techtrial.domain.model.user.User;
 import com.crossover.techtrial.domain.repository.booking.FlightBookingRepository;
 import com.crossover.techtrial.domain.service.booking.FlightBookingService;
 import com.crossover.techtrial.domain.service.flight.FlightScheduleService;
+import com.crossover.techtrial.domain.service.mail.MailClient;
 
 @RestController
 @RequestMapping("/flightBooking")
@@ -33,6 +37,12 @@ public class FlightBookingRestController {
 
 	@Autowired
 	FlightScheduleService flightScheduleService;
+	
+	@Autowired
+	MailClient mailClient;
+	
+	@Autowired
+	MailContentBuilder mailContentBuilder;
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public FlightBooking findBookingById(@PathVariable("id") Long id) {
@@ -61,6 +71,13 @@ public class FlightBookingRestController {
 		
 		// ignore irrelevant entities 
 		flightBooking.getFlightSchedule().setPlane(null);
+		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("message", "hellooo world");
+		parameters.put("authToken", userUtility.getAuthToken());
+		
+		String content = mailContentBuilder.build("mailTemplate", parameters);
+		mailClient.prepareAndSend(user.getEmail(), content);
 		
 		return flightBooking;
 	}

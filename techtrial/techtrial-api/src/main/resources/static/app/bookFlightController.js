@@ -1,5 +1,5 @@
 
-mainApp.controller("bookFlightController", function($scope, $http, $location, $routeParams) {
+mainApp.controller("bookFlightController", function($rootScope, $scope, $http, $location, $routeParams) {
 	var url = "flightSchedule/" + $routeParams.flightScheduleId;
 	
 	
@@ -12,7 +12,7 @@ mainApp.controller("bookFlightController", function($scope, $http, $location, $r
 		numberOfPassengers : 1
 	};
 	
-	$http.get(url).success( function(response) {
+	$http.get(url, $rootScope.httpConfig).success( function(response) {
 		$scope.data.flightSchedule = response; 
 		if (response) {
 			$scope.data.date = new Date(response.scheduledDate);

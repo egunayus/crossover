@@ -36,16 +36,6 @@
     <script src="app/checkinController.js"></script>
     <script src="app/signinController.js"></script>
 
-      <script>// <![CDATA[
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/client:plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-            })();
- 
-// ]]></script><!-- Second script needed for accessing Google API (gapi.*) . It's usage will be described in controller. -->
-<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-
 </head>
 <body>
 
@@ -56,14 +46,15 @@
 				<div class="col-md-3">
 					<ul class="list-group sidebar-nav-v1" id="sidebar-nav">
 						<!-- Thumbails -->
-						<li class="list-group-item"><a href="#searchFlights">Search Flights</a></li>
+						<li class="list-group-item"><a ng-href="{{signedIn ? '#searchFlights' : ''}}" >Search Flights</a></li>
 						<!-- End Thumbails -->
 
 						<!-- Thumbails -->
-						<li class="list-group-item"><a href="#myBookings">My Bookings</a></li>
+						<li class="list-group-item"><a ng-href="{{signedIn ? '#myBookings' : ''}}">My Bookings</a></li>
 						<!-- End Thumbails -->
 
 					</ul>
+					<a href="{{authUrl}}" ng-if="! signedIn" class="btn-u rounded-2x btn-u-red btn-u-sm" title="sign-in">Sgin in with Google+ <i class="fa fa-print"></i></a>
 				</div>
 				<!-- End Sidebar Menu -->
 

@@ -1,5 +1,8 @@
 
-mainApp.controller("searchFlightController", function($scope, $http) {
+mainApp.controller("searchFlightController", function($rootScope, $scope, $http) {
+	if (! $rootScope.signedIn)
+		return;
+	
 	var url = "destination/all";
 	
 	initDatePicker = function() {
@@ -71,11 +74,11 @@ mainApp.controller("searchFlightController", function($scope, $http) {
 		date : null,
 		flexDaysCount : 2,
 		page : 0,
-		size : 2,
+		size : 20,
 		availableFlights : null
 	};
 		
-	$http.get(url).success( function(response) {
+	$http.get(url, $rootScope.httpConfig).success( function(response) {
 		$scope.data.destinations = response; 
 	});
 	
@@ -92,7 +95,7 @@ mainApp.controller("searchFlightController", function($scope, $http) {
 					+ '&page=' + $scope.data.page
 					+ '&size=' + $scope.data.size;
 		
-		$http.get(url).success (function(response) {
+		$http.get(url, $rootScope.httpConfig).success (function(response) {
 			$scope.data.pageResult = response;
 			$scope.data.availableFlights = response.content;
 		});

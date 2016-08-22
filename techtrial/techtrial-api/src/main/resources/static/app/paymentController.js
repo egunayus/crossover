@@ -1,5 +1,5 @@
 
-mainApp.controller("paymentController", function($scope, $http, $routeParams) {
+mainApp.controller("paymentController", function($rootScope, $scope, $http, $routeParams, $location) {
 	var url = "flightBooking/" + $routeParams.flightBookingId;
 	
 	CheckoutForm.initCheckoutForm();
@@ -18,7 +18,7 @@ mainApp.controller("paymentController", function($scope, $http, $routeParams) {
 		}
 	};
 		
-	$http.get(url).success( function(response) {
+	$http.get(url, $rootScope.httpConfig).success( function(response) {
 		$scope.data.flightBooking = response; 
 
 		if (response) {
@@ -66,6 +66,8 @@ mainApp.controller("paymentController", function($scope, $http, $routeParams) {
 		
 		$http.post(url, requestBody).success( function(response) {
 			$scope.data.flightBooking = response; 
+			if (response)
+				$location.path("/myBookings");
 		});
 
 	}
