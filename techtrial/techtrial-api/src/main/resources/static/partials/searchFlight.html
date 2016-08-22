@@ -86,7 +86,7 @@
 											<td>{{flight.flightInfo.from.name}}</td>
 											<td>{{flight.flightInfo.to.name}}</td>
 											<td>{{flight.flightInfo.tariffNo}}</td>
-											<td>{{flight.scheduledDate}}</td>
+											<td>{{flight.scheduledDate | date:'medium'}}</td>
 											<td>{{flight.price}}</td>
 											<td>
 												<a href="#/bookFlight?flightScheduleId={{flight.id}}" class="btn btn-success btn-xs"><i class="fa fa-check"></i> Book now</a>

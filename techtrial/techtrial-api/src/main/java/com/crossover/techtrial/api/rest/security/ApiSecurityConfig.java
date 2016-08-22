@@ -41,6 +41,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/assets/**").anonymous()
 				.antMatchers(HttpMethod.GET, "/partials/**").anonymous()
 				.antMatchers(HttpMethod.GET, "/index.html").anonymous()
+				.antMatchers(HttpMethod.GET, "/favicon.ico").anonymous()
 				.antMatchers(HttpMethod.GET, "/").anonymous()
 				
 				.antMatchers("/**").hasAnyRole("USER", "ADMIN")

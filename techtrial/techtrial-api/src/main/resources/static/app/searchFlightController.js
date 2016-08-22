@@ -98,6 +98,8 @@ mainApp.controller("searchFlightController", function($rootScope, $scope, $http)
 		$http.get(url, $rootScope.httpConfig).success (function(response) {
 			$scope.data.pageResult = response;
 			$scope.data.availableFlights = response.content;
+			for (var flight of $scope.data.availableFlights)
+				flight.scheduledDateObj = new Date(flight.scheduledDate);
 		});
 	};
 	
