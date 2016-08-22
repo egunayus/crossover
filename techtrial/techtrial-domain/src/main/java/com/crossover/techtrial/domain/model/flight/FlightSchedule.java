@@ -33,7 +33,8 @@ import com.crossover.techtrial.domain.model.AbstractBaseEntity;
 	}) 
 public class FlightSchedule extends AbstractBaseEntity {
 	
-	public static final Integer CHECK_IN_POSSIBLE_HOURS = 48;
+	public static final Integer CHECK_IN_POSSIBLE_HOURS_MAX = 48;
+	public static final Integer CHECK_IN_POSSIBLE_HOURS_MIN = 4;
 
 	/**
 	 * references {@link FlightInfo}
@@ -81,7 +82,7 @@ public class FlightSchedule extends AbstractBaseEntity {
 			LocalDateTime now = LocalDateTime.now();
 			
 			long hours = ChronoUnit.HOURS.between(now, scheduledTime);
-			this.setIsCheckinPossible(hours > 0 && hours <= CHECK_IN_POSSIBLE_HOURS);
+			this.setIsCheckinPossible(hours >= CHECK_IN_POSSIBLE_HOURS_MIN && hours <= CHECK_IN_POSSIBLE_HOURS_MAX);
 		}
 	}
 	
