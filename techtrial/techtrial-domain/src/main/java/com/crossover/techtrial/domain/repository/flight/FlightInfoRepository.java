@@ -6,4 +6,6 @@ import com.crossover.techtrial.domain.model.flight.FlightInfo;
 
 public interface FlightInfoRepository extends PagingAndSortingRepository<FlightInfo, Long> {
 
+	public FlightInfo findByTariffNo(String tariffNo);
+	
 }

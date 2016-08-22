@@ -124,6 +124,19 @@ mvn clean package
 ## Executing on local environment
 Once the project is extracted and built, you can open the project modules with your favourite IDE (Eclipse, IntelliJ, etc.) and then just run following class as a Java Application 
 
+com.crossover.techtrial.ApiApplicationMain
 
 
+## Executing on AWS (or any other cloud)
+The following files should be uploaded to the cloud server in the same folder, application configuration should be handled as explained in previous sections
+
+- The executable JAR file (techtrial-api-0.0.1-SNAPSHOT.jar)
+- application.properties
+- application-mysql-local.properties
+- application-mail.properties
+
+The application can be run by this command
+
+ java -jar techtrial-api-0.0.1-SNAPSHOT.jar
+ 
  
