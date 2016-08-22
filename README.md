@@ -6,15 +6,16 @@ Software design and solution is explained in detail in Software Design Document.
 Maven is used as the build manager for the project.
 
 ## Project sctructure
+The project is configured to be a multi module maven project. At the root level techtrial/ is the parent pom module. Below there are three modules. 
+
 + techtrial/
-	+ pom.xml
 	+ techtrial-domain/
-		+ pom.xml
-		+ src
-			+ main
-				+ resources
-					+ application.properties
-					+  	 
+	+ techtrial-api/
+	+ tectrial-admin/
+
+Important configuration files and folders are presented in the following picture
+
+ 
 
 ## Installation
 The project has two executable package 
