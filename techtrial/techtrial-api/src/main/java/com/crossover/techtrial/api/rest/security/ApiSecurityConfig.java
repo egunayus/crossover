@@ -36,6 +36,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 			.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/auth/**").anonymous()
+				.antMatchers(HttpMethod.GET, "/auth/**").anonymous()
 				.antMatchers(HttpMethod.GET, "/buildInfo").anonymous()
 				.antMatchers(HttpMethod.GET, "/app/**").anonymous()
 				.antMatchers(HttpMethod.GET, "/assets/**").anonymous()

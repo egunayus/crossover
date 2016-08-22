@@ -23,7 +23,107 @@ The project has two executable package
 - techtrial-api-0.0.1-SNAPSHOT.jar
 - techtrial-admin-0.0.1-SNAPSHOT.jar
 
+### Prerequisites
+Following are required to build and run the executables
+
++ java 8
++ maven 3.3+
++ mysql 5.6+ 
+
+### Application configuration
+Application is configured from several properties files. These files should be configured before proceeding
+
+- techtrial/techtrial-domain/src/main/resources/<b>application.properties</b>
+- techtrial/techtrial-domain/src/main/resources/<b>application-mysql-local.properties</b>
+- techtrial/techtrial-domain/src/main/resources/<b>application-mail.properties</b>
+
+##### techtrial-domain/ application.properties
+
+```properties
+application.properties
+
+# Active Spring Profiles
+spring.profiles.active=development, mysql-local, mail
+```
+
+developemnt profile is used to load test data every time the application is started on local development environment. 
+
+##### techtrial-domain/ application-mysql-local.properties
+
+<b>change</b> the database connection parameters, leave the other parameters unchanged. 
+
+```properties
+application-mysql-local.properties
+
+
+# Mysql - local database connection properties
+
+spring.datasource.url=jdbc:mysql://localhost:3306/ticket?profileSQL=false&useSSL=db-user
+spring.datasource.username=db-user
+spring.datasource.password=****
+```
+
+##### techtrial-domain/ application-mail.properties
+
+<b>change</b> the smtp connection parameters if you want to use your favourite smtp server. if you want to use gmail, just change the username & password, leave the others unchanged
+
+```properties
+application-mail.properties
+
+# spring mail configuration
+spring.mail.host = smtp.gmail.com
+spring.mail.username = egunayatr@gmail.com
+spring.mail.password = ****
+spring.mail.port = 465
+
+spring.mail.properties.mail.smtp.ssl.enable = true
+spring.mail.properties.mail.smtp.auth = true
+spring.mail.properties.mail.smtp.socketFactory.port = 465
+spring.mail.properties.mail.smtp.socketFactory.class = javax.net.ssl.SSLSocketFactory
+spring.mail.properties.mail.smtp.socketFactory.fallback = false
+```
+
+### Google account 
+
+You have to configure your Google application for authenticating the users via Google
+
+Follow the steps mentioned in section 'Obtain OAuth 2.0 credentials' from following url
+ 
+https://developers.google.com/identity/protocols/OpenIDConnect
+
+Get your client_id and client_secret 
+
+##### techtrial-api/ application.properties
+
+change the Google client_id and client_secret obtained from previous step. 
+if you want to test on your localhost following urls are already defined and accepted with my Google App, you can just use it without changing any thing.
+
+- http://www.example.org
+
+- http://localhost:8080
+
+```properties
+application.properties
+
+
+# Google OAuth connection parameters
+auth.google.client.id=387640011435-t6csd426r6j03sncvn5pbagg3gdr08ba.apps.googleusercontent.com
+auth.google.client.secret=XnpZXbqC20VDTrT9XKG7BgeS
+```
+
+ 
+
+### Packaging executables
+
 
 In order to generate the packages following comment should be executed in techtrial/ folder where the parent pom.xml file exists. 
 
 mvn clean package
+
+
+## Executing on local environment
+Once the project is extracted and built, you can open the project modules with your favourite IDE (Eclipse, IntelliJ, etc.) and then just run following class as a Java Application 
+
+
+
+ 

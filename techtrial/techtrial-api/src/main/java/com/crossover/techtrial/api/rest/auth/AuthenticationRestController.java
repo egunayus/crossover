@@ -59,6 +59,13 @@ public class AuthenticationRestController {
 	@Autowired
 	ObjectMapper objectMapper;
 
+	@RequestMapping(value = "/google/clientId", method = RequestMethod.GET)
+	public Map<String, String> authenticateFromGoogle() throws Exception {
+		Map<String, String> result = new HashMap<>();
+		result.put("clientId", clientId);
+		return result;
+	}
+	
 	@RequestMapping(value = "/google", method = RequestMethod.POST)
 	public AuthenticationResponse authenticateFromGoogle(@RequestBody GoogleAuthRequest authRequest) throws Exception {
 		RestTemplate restTemplate = new RestTemplate();

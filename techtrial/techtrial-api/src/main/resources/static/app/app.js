@@ -23,11 +23,23 @@ mainApp.config(['$routeProvider', function($routeProvider) {
 		;
 }]);
 
-mainApp.run(function($rootScope, $http) {
+mainApp.run(function($rootScope, $http, $location) {
+	$rootScope.signedIn = false;
 	$rootScope.state = "test_state";
 	$rootScope.nonce = "DgkRrHXmyu3KLd0KDdfq";
-	$rootScope.redirectUri = "http://www.example.org";
-	$rootScope.signedIn = false;
+	$rootScope.clientId = "387640011435-t6csd426r6j03sncvn5pbagg3gdr08ba.apps.googleusercontent.com";
+	
+	$rootScope.redirectUri = $location.protocol() + "://" 
+			+ $location.host() 
+			+ ($location.port() == 80 || $location.port() == 443 ? '' : ':' + $location.port())
+			;
+
+	$http.get("auth/google/clientId").success(function(response) {
+		if (response) {
+			$rootScope.clientId = response;
+		}
+	});
+	
 	
 	$rootScope.authUrl = "https://accounts.google.com/o/oauth2/auth?"
 		+ "response_type=code"
@@ -37,7 +49,6 @@ mainApp.run(function($rootScope, $http) {
 		+ "&redirect_uri=" + $rootScope.redirectUri
 		+ "&nonce=" + $rootScope.nonce;
 	
-	//$http.defaults.headers.common['X-Auth-Token'] = 'test-x-auth-token';
 	var authToken = getQueryParameter('authToken');
 	
 	if (authToken != null) {
